@@ -13,6 +13,12 @@ class CodeGenerator:
                 var = statement[1]
                 value = self.evaluate_expression(statement[2])
                 self.variables[var] = value
+            elif statement[0] == "WHILE":
+                condition = statement[1]
+                body = statement[2]
+                while self.evaluate_expression(condition):
+                    for body_statement in body:
+                        self.generate(body_statement)
 
     def evaluate_expression(self, expr):
         if isinstance(expr, int):

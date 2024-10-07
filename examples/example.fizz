@@ -1,3 +1,11 @@
 PRINT 5 + 3
 x = 10 * 2
 PRINT x - 4
+
+WHILE loop
+x = 0
+WHILE x < 5 {
+    PRINT x
+    x = x + 1
+}
+

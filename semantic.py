@@ -12,6 +12,11 @@ class SemanticAnalyzer:
                 var = statement[1]
                 expr = statement[2]
                 self.variables[var] = self.check_expression(expr)
+            elif statement[0] == "WHILE":
+                condition = statement[1]
+                self.check_expression(condition)
+                for body_statement in statement[2]:
+                    self.analyze(body_statement)
 
     def check_expression(self, expr):
         if isinstance(expr, int):

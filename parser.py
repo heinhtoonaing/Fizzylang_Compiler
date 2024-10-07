@@ -10,13 +10,27 @@ class Parser:
             if self.tokens[self.position] == "PRINT":
                 self.position += 1
                 statements.append(("PRINT", self.expression()))
+            elif self.tokens[self.position] == "WHILE":
+                self.position += 1
+                condition = self.expression()
+                self.position += 1
+                body = []
+                while self.tokens[self.position] != "ENDWHILE":
+                    body.append(self.statement())
+                statements.append(("WHILE", condition, body))
             else:
                 var = self.tokens[self.position]
-                self.position += 1  # skip variable name
-                self.position += 1  # skip '='
+                self.position += 1
+                self.position += 1
                 expr = self.expression()
                 statements.append(("ASSIGN", var, expr))
         return statements
+    def statement(self):
+        if self.tokens[self.position] == "PRINT":
+            return self.parse()
+      
+            
+    
 
     def expression(self):
         left = self.term()
